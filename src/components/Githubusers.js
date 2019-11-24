@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import Helmet from 'react-helmet'
+import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 
 class githubusers extends Component {
     constructor(props) {
@@ -25,9 +33,11 @@ class githubusers extends Component {
                 console.log(response.data);
                 if (login) {
                     this.setState({
-                        //users: response.data,
+                        users: response.data,
                         login: response.data.login, //showing login on webpage
                         name: response.data.name, //showing name on webpage,
+                        avatar_url: response.data.avatar_url,
+                        html_url: response.data.html_url,
                         errorMessage: false,
                     });
                 } else {
@@ -46,26 +56,50 @@ class githubusers extends Component {
             });
     };
 
-    // //Disappear error message after 2000sec.
-    // componentDidUpdate() {
-    //     setTimeout(() => this.setState({ errorMessage: "" }), 2000);
-    // }
+    //Disappear error message after 2000sec.
+    componentDidUpdate() {
+        setTimeout(() => this.setState({ errorMessage: "" }), 2000);
+    }
 
     render() {
         return (
             <>
                 <Helmet><title>Githubusers</title></Helmet>
-                <h1>Github Cards</h1>
+                <h3>GitHub User Cards</h3>
                 {/* <form onSubmit={this.getUser.bind(this)}> */}
                 <form onSubmit={this.getUser}>
-                    <input type="text" name="login" placeholder="GitHub Username" />
-                    <button>Add Card</button>
-                    <p>{this.state.errorMessage}</p>
-                    <p>{this.state.login}</p> {/* showing login on webpage */}
-                    <p>{this.state.name}</p> {/* showing name on webpage  */}
+                    <TextField id="standard-basic" name="login" label="GitHub Username" />
+                    {/* <TextField id="outlined-basic" variant="outlined" name="login" label="GitHub Username" /> */}
+                    {/* Displaying error messages */}
+                    <Paper>
+                        <Typography variant="h6">
+                            {this.state.errorMessage}
+                        </Typography>
+                    </Paper>
+                    {/* Displaying card contents */}
+                    <Card style={{ width: 325, position: 'absolute', left: '50%', top: '70%', transform: 'translate(-50%, -50%)'}}>
+                        <CardActionArea>
+                            <CardMedia style={{height:325}}
+                                image={this.state.avatar_url}
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    {this.state.login}
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    {this.state.name}
+                                    {this.state.html_url}
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                        <CardActions>
+
+                        </CardActions>
+                    </Card>
                 </form>
             </>
         );
+        
     }
 }
 
