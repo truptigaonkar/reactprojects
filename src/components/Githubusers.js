@@ -33,7 +33,7 @@ class githubusers extends Component {
                 console.log(response.data);
                 if (login) {
                     this.setState({
-                        users: response.data,
+                        //users: response.data,
                         login: response.data.login, //showing login on webpage
                         name: response.data.name, //showing name on webpage,
                         avatar_url: response.data.avatar_url,
@@ -42,7 +42,6 @@ class githubusers extends Component {
                     });
                 } else {
                     this.setState({
-                        login: '',
                         errorMessage: true,
                     });
                 }
@@ -65,7 +64,7 @@ class githubusers extends Component {
         return (
             <>
                 <Helmet><title>Githubusers</title></Helmet>
-                <h3>GitHub User Cards</h3>
+                <h2>GitHub User Cards</h2>
                 {/* <form onSubmit={this.getUser.bind(this)}> */}
                 <form onSubmit={this.getUser}>
                     <TextField id="standard-basic" name="login" label="GitHub Username" />
@@ -77,7 +76,7 @@ class githubusers extends Component {
                         </Typography>
                     </Paper>
                     {/* Displaying card contents */}
-                    <Card style={{ width: 325, position: 'absolute', left: '50%', top: '70%', transform: 'translate(-50%, -50%)'}}>
+                    <Card style={{ width: 325, position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}>
                         <CardActionArea>
                             <CardMedia style={{height:325}}
                                 image={this.state.avatar_url}
@@ -99,8 +98,8 @@ class githubusers extends Component {
                 </form>
             </>
         );
-        
-    }
+        } 
+    
 }
 
 export default githubusers;

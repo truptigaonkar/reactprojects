@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Githubusers from './components/Githubusers';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Weather from './components/Weather';
+import Recipes from './components/Recipes';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -17,11 +17,11 @@ function App() {
             <IconButton edge="start" color="inherit" aria-label="menu">
             </IconButton>
             <Button color="inherit" component={Link} to="/">GitHub Cards</Button>
-            <Button color="inherit" component={Link} to="/weather">Weather</Button>
+            <Button color="inherit" component={Link} to="/recipes">Recipes</Button>
           </Toolbar>
         </AppBar>
         <Route exact path="/" component={Githubusers} />
-        <Route exact path="/weather" component={Weather} />
+        <Route exact path="/recipes" component={Recipes} />
       </Router>
     </div>
   );
