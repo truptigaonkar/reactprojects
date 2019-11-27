@@ -35,6 +35,11 @@ export default class Recipes extends Component {
           <input type="text" name="ingredient" placeholder="Recipes..." />
           <button>GET</button>
         </form>
+        {this.state.recipes.map(recipe => (
+          <tr key={recipe.title}>
+            <td>{recipe.title}</td>
+          </tr>
+        ))}
       </>
     );
   }
