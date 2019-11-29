@@ -16,6 +16,7 @@ export default class Recipes extends Component {
   getRecipe = e => {
     e.preventDefault();
     const ingredient = e.target.elements.ingredient.value;
+    if(ingredient){
     axios
       .get(`https://cors-anywhere.herokuapp.com/http://www.recipepuppy.com/api/?i=${ingredient}`) //https://cors-anywhere.herokuapp.com/ is used to remove error Cross-Origin Read Blocking (CORB)
       .then(response => {
@@ -26,19 +27,22 @@ export default class Recipes extends Component {
           title: response.data.title
         });
       });
+    }
   };
   render() {
     return (
       <>
         <h3>Recipes</h3>
         <form onSubmit={this.getRecipe}>
-          <input type="text" name="ingredient" placeholder="Recipes..." />
+          <input type="text" name="ingredient" placeholder="e.g. fish" />
           <button>GET</button>
         </form>
         {this.state.recipes.map(recipe => (
-          <tr key={recipe.title}>
-            <td>{recipe.title}</td>
-          </tr>
+          <ul key={recipe.id}>
+            <li><a href={`${recipe.href}`} target="_blank"><img src={recipe.thumbnail} alt="" /></a></li>
+            <li><a href={`${recipe.href}`} target="_blank">{recipe.title}</a></li>
+            <li>{recipe.ingredients}</li>
+          </ul>
         ))}
       </>
     );
