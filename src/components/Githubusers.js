@@ -1,30 +1,19 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import Helmet from 'react-helmet'
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+import { TextField, Paper, Typography, Card, CardActionArea, CardActions, CardContent, CardMedia } from '@material-ui/core';
 
 class githubusers extends Component {
     constructor(props) {
         super(props);
-        this.state = { users: '', errorMessage: false }
+        this.state = { users: '', errorMessage: false, cardShow: false, }
     }
-    // state = {
-    //     users: "",
-    // };
 
     // Form button function
     // getUser(e) {
     getUser = e => {
         e.preventDefault();
         const login = e.target.elements.login.value;
-
         axios
             .get(
                 `https://api.github.com/users/${login}`
@@ -38,7 +27,11 @@ class githubusers extends Component {
                         name: response.data.name, //showing name on webpage,
                         avatar_url: response.data.avatar_url,
                         html_url: response.data.html_url,
+                        public_repos: response.data.public_repos,
+                        location: response.data.location,
+                        followers: response.data.followers,
                         errorMessage: false,
+                        cardShow: true
                     });
                 } else {
                     this.setState({
@@ -53,6 +46,7 @@ class githubusers extends Component {
                         "Username does not exist. Please enter valid username"
                 });
             });
+        e.target.reset(); //making input empty
     };
 
     //Disappear error message after 2000sec.
@@ -60,25 +54,28 @@ class githubusers extends Component {
         setTimeout(() => this.setState({ errorMessage: "" }), 2000);
     }
 
+
     render() {
+
         return (
             <>
                 <Helmet><title>Githubusers</title></Helmet>
-                <h2>GitHub User Cards</h2>
+                <h3>GitHub User CARD</h3>
                 {/* <form onSubmit={this.getUser.bind(this)}> */}
                 <form onSubmit={this.getUser}>
-                    <TextField id="standard-basic" name="login" label="GitHub Username" />
-                    {/* <TextField id="outlined-basic" variant="outlined" name="login" label="GitHub Username" /> */}
+                    <TextField id="outlined-basic" variant="outlined" name="login" label="GitHub Username" placeholder="e.g. mojombo" />
                     {/* Displaying error messages */}
                     <Paper>
                         <Typography variant="h6">
                             {this.state.errorMessage}
                         </Typography>
                     </Paper>
-                    {/* Displaying card contents */}
-                    <Card style={{ width: 325, position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}>
+                </form>
+                {/* Displaying card contents */}
+                {this.state.cardShow &&
+                    <Card style={{ width: 325, position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
                         <CardActionArea>
-                            <CardMedia style={{height:325}}
+                            <CardMedia style={{ height: 325 }}
                                 image={this.state.avatar_url}
                             />
                             <CardContent>
@@ -86,20 +83,23 @@ class githubusers extends Component {
                                     {this.state.login}
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    {this.state.name}
-                                    {this.state.html_url}
+                                    <div><b>Name:</b> {this.state.name}</div>
+                                    <div><b>Location:</b> {this.state.location}</div>
+                                    <div><b>GitHhb url:</b><a href={`${this.state.html_url}`} target="_blank">{this.state.html_url}</a></div>
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-
+                            <b>Repositories: </b> {this.state.public_repos}
+                            <div style={{ float: 'left' }}><b>Followers: </b> {this.state.followers}</div>
                         </CardActions>
                     </Card>
-                </form>
+                }
             </>
+
         );
-        } 
-    
+    }
+
 }
 
 export default githubusers;

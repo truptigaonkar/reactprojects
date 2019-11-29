@@ -1,15 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Helmet from 'react-helmet'
-import { TextField, Button } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 
 export default class Recipes extends Component {
-  //   constructor(props) {
-  //     super(props);
-  //     this.state = {
-  //       recipes: []
-  //     };
-  //   }
   state = {
     recipes: []
   };
@@ -32,6 +26,7 @@ export default class Recipes extends Component {
           });
         });
     }
+    e.target.reset(); //making input empty
   };
   render() {
     return (
