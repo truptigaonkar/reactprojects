@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Helmet from 'react-helmet'
+import { TextField, Button } from '@material-ui/core';
 
 export default class Recipes extends Component {
   //   constructor(props) {
@@ -16,30 +18,38 @@ export default class Recipes extends Component {
   getRecipe = e => {
     e.preventDefault();
     const ingredient = e.target.elements.ingredient.value;
-    axios
-      .get(`https://cors-anywhere.herokuapp.com/http://www.recipepuppy.com/api/?i=${ingredient}`) //https://cors-anywhere.herokuapp.com/ is used to remove error Cross-Origin Read Blocking (CORB)
-      .then(response => {
-        console.log(response.data.results);
-        this.setState({
-          recipes: response.data.results,
-          ingredient: response.data.ingredient,
-          title: response.data.title
+    if (ingredient) {
+      axios
+        .get(
+          `https://cors-anywhere.herokuapp.com/http://www.recipepuppy.com/api/?i=${ingredient}`
+        ) //https://cors-anywhere.herokuapp.com/ is used to remove error Cross-Origin Read Blocking (CORB)
+        .then(response => {
+          console.log(response.data.results);
+          this.setState({
+            recipes: response.data.results,
+            ingredient: response.data.ingredient,
+            title: response.data.title
+          });
         });
-      });
+    }
   };
   render() {
     return (
       <>
-        <h3>Recipes</h3>
+      <Helmet><title>Recipe</title></Helmet>
+        <h3>Recipe CARD</h3>
         <form onSubmit={this.getRecipe}>
-          <input type="text" name="ingredient" placeholder="Recipes..." />
-          <button>GET</button>
+        <TextField id="standard-basic" name="ingredient" label="Ingredient" placeholder="e.g.fish" />
         </form>
-        {this.state.recipes.map(recipe => (
-          <tr key={recipe.title}>
-            <td>{recipe.title}</td>
-          </tr>
-        ))}
+        <div style={{ display: "flex", justifyContent:'space-center', flexWrap: 'wrap' }}>
+          {this.state.recipes.map(recipe => (
+            <div className='card' key={recipe.id} style={{flex: '0 0 calc(25% - 30px)', margin: '15px'}} >
+              <div style={{width:'100%'}}><a href={`${recipe.href}`} target="_blank"><img src={recipe.thumbnail} style={{width:'100%', height:'10%'}} /></a></div>
+              <div><a href={`${recipe.href}`} target="_blank">{recipe.title}</a></div>
+              <div>{recipe.ingredients}</div>
+            </div>
+          ))}
+        </div>
       </>
     );
   }
