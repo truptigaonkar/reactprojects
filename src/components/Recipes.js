@@ -27,7 +27,6 @@ export default class Recipes extends Component {
         });
     }
     e.target.reset(); //making input empty
-    
   };
   render() {
     return (

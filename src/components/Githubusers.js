@@ -57,7 +57,6 @@ class githubusers extends Component {
 
 
     render() {
-
         return (
             <>
                 <Helmet><title>Githubusers</title></Helmet>
