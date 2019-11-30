@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { TextField, Fab, Card, CardHeader, CardContent, Typography } from '@material-ui/core'
+import AddIcon from '@material-ui/icons/Add';
 
 const API_KEY = `${process.env.REACT_APP_API_KEY}`;
 
@@ -19,8 +21,10 @@ class Weather extends Component {
                         city: response.data.name,
                         country: response.data.sys.country,
                         temp: response.data.main.temp,
-                        humidity: response.data.main.humidity,
+                        temp_min: response.data.main.temp_min,
+                        temp_max: response.data.main.temp_max,
                         description: response.data.weather[0].description,
+                        icon: response.data.weather[0].icon,
                         errorMessage: false,
                         cardShow: true
                     });
@@ -48,27 +52,40 @@ class Weather extends Component {
         e.target.reset(); //making input empty
     }
 
-    //Disappear error message after 2000sec.
+    //Disappear error message after 3000sec.
     componentDidUpdate() {
-        setTimeout(() => this.setState({ errorMessage: "" }), 2000);
+        setTimeout(() => this.setState({ errorMessage: "" }), 3000);
     }
 
     render() {
         return (
             <>
                 <h3>Weather CARD</h3>
-                {this.state.errorMessage}
+                <div className="warning">{this.state.errorMessage}</div><br />
+
                 <form onSubmit={this.getWeather}>
-                    <input type="text" name='city' placeholder='e.g. London' />
-                    <input type="text" name='country' placeholder='e.g. UK' />
-                    <button>GET Weather</button>
-                </form>
+                    <TextField id="filled-basic" label="city" variant="filled" name='city' placeholder='e.g. London' /> <TextField id="filled-basic" label="country" variant="filled" name='country' placeholder='e.g. UK' /> <Fab type="submit" color="primary" aria-label="add"><AddIcon /></Fab>
+                </form><br /><br />
+
                 {this.state.cardShow &&
                     <div>
-                        <p><b>Location: </b>{this.state.city}, {this.state.country}</p>
-                        <p><b>Temprature: </b>{this.state.temp}</p>
-                        <p><b>humidity: </b>{this.state.humidity}</p>
-                        <p><b>Description: </b>{this.state.description}</p>
+                        <Card style={{ width: 325, position: 'absolute', left: '50%', top: '60%', transform: 'translate(-50%, -50%)' }}>
+                            <CardHeader
+                                title={this.state.city}
+                                subheader={this.state.country}
+                            />
+                            <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                            <img src={`http://openweathermap.org/img/w/${this.state.icon}.png`} alt="wthr img" width='200px' />
+                            </Typography>
+                                    <b>{this.state.description}</b>
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                    <p><b>Temperature: </b>{this.state.temp}</p>
+                                    <p><b>MIN Temperature: </b>{this.state.temp_min}</p>
+                                    <p><b>MAX Temperature: </b>{this.state.temp_max}</p>
+                                </Typography>
+                            </CardContent>
+                        </Card>
                     </div>
                 }
             </>
