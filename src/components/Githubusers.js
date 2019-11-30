@@ -6,7 +6,7 @@ import { TextField, Paper, Typography, Card, CardActionArea, CardActions, CardCo
 class githubusers extends Component {
     constructor(props) {
         super(props);
-        this.state = { users: '', errorMessage: false, cardShow: false, }
+        this.state = { errorMessage: false, cardShow: false, }
     }
 
     // Form button function
@@ -28,6 +28,7 @@ class githubusers extends Component {
                         avatar_url: response.data.avatar_url,
                         html_url: response.data.html_url,
                         public_repos: response.data.public_repos,
+                        repos_url: response.data.repos_url,
                         location: response.data.location,
                         followers: response.data.followers,
                         errorMessage: false,
@@ -85,13 +86,14 @@ class githubusers extends Component {
                                 <Typography variant="body2" color="textSecondary" component="p">
                                     <div><b>Name:</b> {this.state.name}</div>
                                     <div><b>Location:</b> {this.state.location}</div>
-                                    <div><b>GitHhb url:</b><a href={`${this.state.html_url}`} target="_blank">{this.state.html_url}</a></div>
+                                    <div><b>GitHhb url:</b><a href={`${this.state.html_url}`} target="_blank">
+                                        {this.state.html_url}</a></div>
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                            <b>Repositories: </b> {this.state.public_repos}
-                            <div style={{ float: 'left' }}><b>Followers: </b> {this.state.followers}</div>
+                            <b>Repositories: </b>{this.state.public_repos}
+                            <b>Followers: </b> {this.state.followers}
                         </CardActions>
                     </Card>
                 }
