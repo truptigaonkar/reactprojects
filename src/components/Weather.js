@@ -12,7 +12,7 @@ class Weather extends Component {
         const city = e.target.elements.city.value;
         const country = e.target.elements.country.value;
 
-        axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`)
+        axios.get(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`)
             .then(response => {
                 console.log(response.data);
                 if (city && country) {
