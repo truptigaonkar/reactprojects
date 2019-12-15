@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import ReactPlayer from 'react-player';
 
 class Media extends Component {
     state = {
@@ -15,8 +16,8 @@ class Media extends Component {
                     .then(response => {
                         console.log(response.data.hits);
                         this.setState({
-                            //value: 'select',
                             medias: response.data.hits, //images
+                            //value: 'select',
                         });
                     })
             } else if (this.state.value === 'video') {
@@ -24,13 +25,12 @@ class Media extends Component {
                     .then(response => {
                         console.log(response.data.hits);
                         this.setState({
-                            value: '',
                             medias: response.data.hits, //videos
+                            value: 'select',
                         });
                     })
             }
         }
-
         e.target.reset(); //making input empty
     }
     selectChange = e => {
@@ -50,11 +50,14 @@ class Media extends Component {
                         </select>
                         <button>GET</button>
                     </form>
+                    <div>
                     {this.state.medias.map(media => (
-                        <tr key={media.id}>
-                            <td><img src={media.previewURL} style={{ width: '300px' }} /></td>
-                        </tr>
+                        <ul key={media.id}>
+                            <li><img src={media.previewURL} style={{ width: '15%', height: '15%' }} /></li>
+                            <li>{media.tags}</li>
+                        </ul>
                     ))}
+                    </div>
                 </>
             );
         } else {
@@ -70,12 +73,20 @@ class Media extends Component {
                         </select>
                         <button>GET</button>
                     </form>
-
+                    <div>
                     {this.state.medias.map(media => (
-                        <tr key={media.id}>
-                            <td><video src={media.videos.small.url} width='300px' /></td>
-                        </tr>
+                        <ul key={media.id}>
+                            {/* <li><ReactPlayer
+                                url={media.videos.small.url}
+                                className='react-player'
+                                playing
+                                width='15%'
+                                height='15%'
+                            /></li> */}
+                            <li>{media.tags}</li>
+                        </ul>
                     ))}
+                    </div>
                 </>
             );
         }
