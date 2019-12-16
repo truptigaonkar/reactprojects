@@ -76,13 +76,13 @@ class Media extends Component {
                     <div>
                     {this.state.medias.map(media => (
                         <ul key={media.id}>
-                            {/* <li><ReactPlayer
+                        { media.videos && <li><ReactPlayer
                                 url={media.videos.small.url}
                                 className='react-player'
                                 playing
                                 width='15%'
                                 height='15%'
-                            /></li> */}
+                            /></li> }
                             <li>{media.tags}</li>
                         </ul>
                     ))}
