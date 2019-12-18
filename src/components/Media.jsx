@@ -1,6 +1,12 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactPlayer from 'react-player';
+import {
+  TextField, FormControl, InputLabel, Select, MenuItem, Button,
+} from '@material-ui/core';
+
+const API_KEY = `${process.env.REACT_APP_API_KEY1}`;
 
 class Media extends Component {
   constructor(props) {
@@ -14,7 +20,7 @@ class Media extends Component {
       const { value } = this.state;
       if (media) { // empty input
         if (value === 'image') {
-          axios.get(`https://pixabay.com/api/?key=14482129-f8f3796c1975d4841314c1735&q=${media}&image_type=photo&pretty=true`)
+          axios.get(`https://pixabay.com/api/?key=${API_KEY}&q=${media}&image_type=photo&pretty=true`)
             .then((response) => {
               this.setState({
                 medias: response.data.hits, // images
@@ -22,7 +28,7 @@ class Media extends Component {
               });
             });
         } else if (value === 'video') {
-          axios.get(`https://pixabay.com/api/videos/?key=14482129-f8f3796c1975d4841314c1735&q=${media}&pretty=true`)
+          axios.get(`https://pixabay.com/api/videos/?key=${API_KEY}&q=${media}&pretty=true`)
             .then((response) => {
               this.setState({
                 medias: response.data.hits, // videos
@@ -47,19 +53,31 @@ class Media extends Component {
           <>
             <h3>Media CARD</h3>
             <form onSubmit={this.getMedia}>
-              <input type="text" name="media" placeholder="e.g. dog" />
-              <select onChange={this.selectChange} value={value}>
-                <option value="image">Image</option>
-                <option value="video">Video</option>
-              </select>
-              <button type="submit">GET</button>
+              <TextField id="standard-basic" label="media" name="media" placeholder="e.g. cat" />
+&nbsp;&nbsp;
+              <FormControl>
+                <InputLabel id="demo-simple-select-label" />
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={value}
+                  onChange={this.selectChange}
+                >
+                  <MenuItem value="image">Image</MenuItem>
+                  <MenuItem value="video">Video</MenuItem>
+                </Select>
+              </FormControl>
+&nbsp;
+              <Button style={{ margin: '15px' }} type="submit" variant="contained" color="primary" disableElevation>
+  GET
+              </Button>
             </form>
-            <div>
+            <div style={{ display: 'flex', justifyContent: 'space-center', flexWrap: 'wrap' }}>
               {medias.map((media) => (
-                <ul key={media.id}>
-                  <li><img src={media.previewURL} alt="url" style={{ width: '15%', height: '15%' }} /></li>
-                  <li>{media.tags}</li>
-                </ul>
+                <div className="card" key={media.id}>
+                  <div><img src={media.previewURL} alt="url" style={{ width: '100%', height: '100%' }} /></div>
+                  <div>{media.tags}</div>
+                </div>
               ))}
             </div>
           </>
@@ -69,29 +87,41 @@ class Media extends Component {
         <>
           <h3>Media CARD</h3>
           <form onSubmit={this.getMedia}>
-            <input type="text" name="media" placeholder="e.g. dog" />
-            <select onChange={this.selectChange} value={value}>
-              <option value="image">Image</option>
-              <option value="video">Video</option>
-            </select>
-            <button type="submit">GET</button>
+            <TextField id="standard-basic" label="media" name="media" placeholder="e.g. cat" />
+&nbsp;&nbsp;
+            <FormControl>
+              <InputLabel id="demo-simple-select-label" />
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={value}
+                onChange={this.selectChange}
+              >
+                <MenuItem value="image">Image</MenuItem>
+                <MenuItem value="video">Video</MenuItem>
+              </Select>
+            </FormControl>
+&nbsp;
+            <Button style={{ margin: '15px' }} type="submit" variant="contained" color="primary" disableElevation>
+  GET
+            </Button>
           </form>
-          <div>
+          <div style={{ display: 'flex', justifyContent: 'space-center', flexWrap: 'wrap' }}>
             {medias.map((media) => (
-              <ul key={media.id}>
+              <div className="card" key={media.id}>
                 { media.videos && (
-                <li>
+                <div>
                   <ReactPlayer
                     url={media.videos.small.url}
                     className="react-player"
                     playing
-                    width="15%"
-                    height="15%"
+                    width="100%"
+                    height="100%"
                   />
-                </li>
+                </div>
                 ) }
-                <li>{media.tags}</li>
-              </ul>
+                <div>{media.tags}</div>
+              </div>
             ))}
           </div>
         </>
