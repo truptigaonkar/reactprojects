@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactPlayer from 'react-player';
 import {
-  TextField, FormControl, InputLabel, Select, MenuItem, Button,
+  TextField, FormControl, InputLabel, Select, MenuItem, Button, AppBar, Link,
 } from '@material-ui/core';
 
 const API_KEY = `${process.env.REACT_APP_API_KEY1}`;
@@ -51,7 +51,6 @@ class Media extends Component {
       if (value === 'image') {
         return (
           <>
-            <h3>Media CARD</h3>
             <form onSubmit={this.getMedia}>
               <TextField id="standard-basic" label="media" name="media" placeholder="e.g. cat" />
 &nbsp;&nbsp;
@@ -69,7 +68,7 @@ class Media extends Component {
               </FormControl>
 &nbsp;
               <Button style={{ margin: '15px' }} type="submit" variant="contained" color="primary" disableElevation>
-  GET
+  GET MEDIA
               </Button>
             </form>
             <div style={{ display: 'flex', justifyContent: 'space-center', flexWrap: 'wrap' }}>
@@ -80,6 +79,16 @@ class Media extends Component {
                 </div>
               ))}
             </div>
+            <br />
+            <br />
+            <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>
+              <Button color="primary">
+                <Link href="https://pixabay.com/api/docs/" color="inherit">
+                  <b>Pixabay API</b>
+: https://pixabay.com/api/docs/
+                </Link>
+              </Button>
+            </AppBar>
           </>
         );
       }
@@ -103,7 +112,7 @@ class Media extends Component {
             </FormControl>
 &nbsp;
             <Button style={{ margin: '15px' }} type="submit" variant="contained" color="primary" disableElevation>
-  GET
+  GET MEDIA
             </Button>
           </form>
           <div style={{ display: 'flex', justifyContent: 'space-center', flexWrap: 'wrap' }}>
@@ -124,6 +133,16 @@ class Media extends Component {
               </div>
             ))}
           </div>
+          <br />
+          <br />
+          <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>
+            <Button color="primary">
+              <Link href="https://pixabay.com/api/docs/" color="inherit">
+                <b>Pixabay API</b>
+: https://pixabay.com/api/docs/
+              </Link>
+            </Button>
+          </AppBar>
         </>
       );
     }

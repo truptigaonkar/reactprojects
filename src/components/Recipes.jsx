@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Helmet from 'react-helmet';
-import { TextField } from '@material-ui/core';
+import {
+  TextField, AppBar, Button, Link,
+} from '@material-ui/core';
 
 export default class Recipes extends Component {
   constructor(props) {
@@ -32,9 +34,11 @@ export default class Recipes extends Component {
     return (
       <>
         <Helmet><title>Recipe</title></Helmet>
-        <h3>Recipe CARD</h3>
         <form onSubmit={this.getRecipe}>
           <TextField id="standard-basic" name="ingredient" label="Ingredient" placeholder="e.g.fish" />
+          <Button style={{ margin: '15px' }} type="submit" variant="contained" color="primary" disableElevation>
+  GET RECIPE
+          </Button>
         </form>
         <div style={{ display: 'flex', justifyContent: 'space-center', flexWrap: 'wrap' }}>
           {recipes.map((recipe) => (
@@ -45,6 +49,16 @@ export default class Recipes extends Component {
             </div>
           ))}
         </div>
+        <br />
+        <br />
+        <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>
+          <Button color="primary">
+            <Link href="http://www.recipepuppy.com/about/api/" color="inherit">
+              <b>Recipe Puppy API</b>
+               : http://www.recipepuppy.com/about/api/
+            </Link>
+          </Button>
+        </AppBar>
       </>
     );
   }

@@ -1,8 +1,9 @@
+/* eslint-disable max-len */
 import React, { Component } from 'react';
 import axios from 'axios';
 import Helmet from 'react-helmet';
 import {
-  TextField, Paper, Typography, Card, CardActionArea, CardActions, CardContent, CardMedia,
+  TextField, Paper, Typography, Card, CardActionArea, CardActions, CardContent, CardMedia, AppBar, Button, Link,
 } from '@material-ui/core';
 
 class githubusers extends Component {
@@ -68,10 +69,13 @@ class githubusers extends Component {
       return (
         <>
           <Helmet><title>Githubusers</title></Helmet>
-          <h3>GitHub User CARD</h3>
+          <br />
           {/* <form onSubmit={this.getUser.bind(this)}> */}
           <form onSubmit={this.getUser}>
             <TextField id="outlined-basic" variant="outlined" name="login" label="GitHub Username" placeholder="e.g. mojombo" />
+            <Button style={{ margin: '15px' }} type="submit" variant="contained" color="primary" disableElevation>
+  GET USER
+              </Button>
             {/* Displaying error messages */}
             <Paper>
               <Typography variant="h6">
@@ -79,16 +83,18 @@ class githubusers extends Component {
               </Typography>
             </Paper>
           </form>
+          <br />
           {/* Displaying card contents */}
-          {cardShow
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            {cardShow
                     && (
                     <Card style={{
-                      width: 325, position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)',
+                      width: 300,
                     }}
                     >
                       <CardActionArea>
                         <CardMedia
-                          style={{ height: 325 }}
+                          style={{ height: 300 }}
                           image={avatarUrl}
                         />
                         <CardContent>
@@ -125,8 +131,18 @@ class githubusers extends Component {
                       </CardActions>
                     </Card>
                     )}
+          </div>
+          <br />
+          <br />
+          <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>
+            <Button color="primary">
+              <Link href="https://developer.github.com/v3/" color="inherit">
+                <b>GitHub users API</b>
+: https://developer.github.com/v3/
+              </Link>
+            </Button>
+          </AppBar>
         </>
-
       );
     }
 }

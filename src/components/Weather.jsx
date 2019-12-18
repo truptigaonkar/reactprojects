@@ -1,7 +1,8 @@
+/* eslint-disable react/jsx-indent */
 import React, { Component } from 'react';
 import axios from 'axios';
 import {
-  TextField, Fab, Card, CardHeader, CardContent, Typography,
+  TextField, Fab, Card, CardHeader, CardContent, Typography, AppBar, Button, Link,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 
@@ -71,13 +72,9 @@ class Weather extends Component {
       const { tempMin } = this.state;
       const { tempMax } = this.state;
       const { icon } = this.state;
-
       return (
         <>
-          <h3>Weather CARD</h3>
-          <div className="warning">{errorMessage}</div>
-          <br />
-
+        <br />
           <form onSubmit={this.getWeather}>
             <TextField id="filled-basic" label="city" variant="filled" name="city" placeholder="e.g. London" />
             {' '}
@@ -86,13 +83,14 @@ class Weather extends Component {
             <Fab type="submit" color="primary" aria-label="add"><AddIcon /></Fab>
           </form>
           <br />
+          <div className="warning">{errorMessage}</div>
           <br />
-
-          {cardShow
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            {cardShow
                     && (
                     <div>
                       <Card style={{
-                        width: 325, position: 'absolute', left: '50%', top: '60%', transform: 'translate(-50%, -50%)',
+                        width: 300,
                       }}
                       >
                         <CardHeader
@@ -122,6 +120,17 @@ class Weather extends Component {
                       </Card>
                     </div>
                     )}
+          </div>
+          <br />
+          <br />
+          <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>
+            <Button color="primary">
+              <Link href="https://openweathermap.org/api" color="inherit">
+                <b>Weather API</b>
+: https://openweathermap.org/api
+              </Link>
+            </Button>
+          </AppBar>
         </>
       );
     }
