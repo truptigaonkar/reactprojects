@@ -8,6 +8,7 @@ import Media from './components/Media';
 import Weather from './components/Weather';
 import Recipes from './components/Recipes';
 import Githubusers from './components/Githubusers';
+import Prisjaktproduct from './components/prisjaktproduct/Productsearch.jsx';
 
 function App() {
   return (
@@ -20,16 +21,18 @@ function App() {
           <Toolbar style={{ display: 'flex', justifyContent: 'center' }}>
             
             <IconButton edge="start" color="inherit" aria-label="menu" />
-            <Button color="inherit" component={Link} to="/">GitHub</Button>
+            <Button color="inherit" component={Link} to="/">GitHub-User</Button>
             <Button color="inherit" component={Link} to="/recipes">Recipes</Button>
             <Button color="inherit" component={Link} to="/weather">Weather</Button>
             <Button color="inherit" component={Link} to="/media">Media</Button>
+            <Button color="inherit" component={Link} to="/prisjaktproduct">Prisjakt-Product</Button>
           </Toolbar>
         </AppBar>
         <Route exact path="/" component={Githubusers} />
         <Route exact path="/recipes" component={Recipes} />
         <Route exact path="/weather" component={Weather} />
         <Route exact path="/media" component={Media} />
+        <Route exact path="/prisjaktproduct" component={Prisjaktproduct} />
       </Router>
     </div>
   );
