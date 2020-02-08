@@ -5,8 +5,8 @@ import {
   TextField, Fab, Card, CardHeader, CardContent, Typography, AppBar, Button, Link,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
+import { weather_URL, weather_APIKEY } from './config.jsx';
 
-const API_KEY = `${process.env.REACT_APP_API_KEY}`;
 
 class Weather extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class Weather extends Component {
       const city = e.target.elements.city.value;
       const country = e.target.elements.country.value;
 
-      axios.get(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`)
+      axios.get(`${weather_URL}?q=${city},${country}&appid=${weather_APIKEY}&units=metric`)
         .then((response) => {
           if (city && country) {
             this.setState({

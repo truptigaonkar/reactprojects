@@ -1,46 +1,46 @@
-import React, { Component } from "react";
-import { Helmet } from "react-helmet";
-import axios from "axios";
-import Style from "./Productsearch.module.css";
-import { URL } from "../prisjaktproduct/config.jsx";
-import Productlist from "../prisjaktproduct/Productlist.jsx";
+import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
+import axios from 'axios';
+import Style from './Productsearch.module.css';
+import { prisjaktproduct_URL } from '../config.jsx';
+import Productlist from './Productlist.jsx';
 
 class Productsearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      errorMessage: "",
+      errorMessage: '',
       products: [],
-      alertShow: false
+      alertShow: false,
     };
   }
 
-  getProduct = e => {
+  getProduct = (e) => {
     e.preventDefault();
     const productToSearch = e.target.elements.product.value;
     axios
-      .post(`${URL}?q=product.name:${productToSearch}`)
-      .then(res => {
+      .post(`${prisjaktproduct_URL}?q=product.name:${productToSearch}`)
+      .then((res) => {
         console.log(res.status);
         this.setState({
           products: res.data.hits.hits,
-          alertShow: false
+          alertShow: false,
         });
         if (res.status === 200) {
-          this.setState({ errorMessage: "Empty array" });
+          this.setState({ errorMessage: 'Empty array' });
         }
       })
-      .catch(error => {
-        console.log("new", error);
+      .catch((error) => {
+        console.log('new', error);
         if (error.response.status === 400) {
           this.setState({
-            errorMessage: "Please fill in the Product Name",
-            alertShow: true
+            errorMessage: 'Please fill in the Product Name',
+            alertShow: true,
           });
         } else {
           this.setState({
-            errorMessage: "Something went wrong",
-            alertShow: true
+            errorMessage: 'Something went wrong',
+            alertShow: true,
           });
         }
       });
@@ -75,7 +75,7 @@ class Productsearch extends Component {
               className={Style.form__field}
               placeholder="Search here...."
             />
-            <label for="product" className={Style.form__label}>
+            <label htmlFor="product" className={Style.form__label}>
               Search here....
             </label>
           </form>

@@ -5,6 +5,7 @@ import Helmet from 'react-helmet';
 import {
   TextField, Paper, Typography, Card, CardActionArea, CardActions, CardContent, CardMedia, AppBar, Button, Link,
 } from '@material-ui/core';
+import { githubusers_URL } from '../components/config.jsx';
 
 class githubusers extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class githubusers extends Component {
       const login = e.target.elements.login.value;
       axios
         .get(
-          `https://api.github.com/users/${login}`,
+          `${githubusers_URL}${login}`,
         )
         .then((response) => {
           if (login) {
