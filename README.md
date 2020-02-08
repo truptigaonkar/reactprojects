@@ -4,8 +4,10 @@
 * React
 * Backend: 
   * GitHub users API (https://developer.github.com/v3/)
-  * Recipe Puppy API (http://www.recipepuppy.com/about/api/)
+  * Recipe Meal API (https://www.themealdb.com/)
   * Weather API (https://openweathermap.org/)
+  * Media(Image/Video) API (https://pixabay.com/api/docs/)
+  * Prisjakt Product API
 * Material-UI (https://material-ui.com/getting-started/installation/) 
 
 #### Installation

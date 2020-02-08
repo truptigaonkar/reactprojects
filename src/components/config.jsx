@@ -1,4 +1,5 @@
 export const GITHUBUSERS_URL = "https://api.github.com/users/";
+export const RECIPES_URL = "https://www.themealdb.com/";
 export const WEATHER_URL = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather"
 export const MEDIA_URL = "https://pixabay.com/api/";
 export const PRISJAKTPRODUCT_URL = "https://search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m.eu-west-1.es.amazonaws.com/campaign-*-4-deals/_search";

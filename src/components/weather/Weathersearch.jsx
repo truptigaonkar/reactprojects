@@ -2,10 +2,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {
-  TextField, Fab, Card, CardHeader, CardContent, Typography, AppBar, Button, Link,
+  TextField, Fab, AppBar, Button, Link,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import { WEATHER_URL, WEATHER_APIKEY } from './config.jsx';
+import { WEATHER_URL, WEATHER_APIKEY } from '../config';
+import Weatherlist from './Weatherlist.jsx';
 
 class Weather extends Component {
   constructor(props) {
@@ -84,42 +85,7 @@ class Weather extends Component {
           <br />
           <div className="warning">{errorMessage}</div>
           <br />
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {cardShow
-                    && (
-                    <div>
-                      <Card style={{
-                        width: 300,
-                      }}
-                      >
-                        <CardHeader
-                          title={city}
-                          subheader={country}
-                        />
-                        <CardContent>
-                          <Typography gutterBottom variant="h5" component="h2">
-                            <img src={`http://openweathermap.org/img/w/${icon}.png`} alt="wthr img" width="200px" />
-                          </Typography>
-                          <b>{description}</b>
-                          <Typography variant="body2" color="textSecondary" component="p">
-                            <p>
-                              <b>Temperature: </b>
-                              {temp}
-                            </p>
-                            <p>
-                              <b>MIN Temperature: </b>
-                              {tempMin}
-                            </p>
-                            <p>
-                              <b>MAX Temperature: </b>
-                              {tempMax}
-                            </p>
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                    </div>
-                    )}
-          </div>
+          <Weatherlist cardShow={cardShow} city={city} country={country} icon={icon} description={description} temp={temp} tempMin={tempMin} tempMax={tempMax} />
           <br />
           <br />
           <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>

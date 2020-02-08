@@ -1,21 +1,16 @@
 import React from 'react';
 import {
-    Typography, Card, CardActionArea, CardActions, CardContent, CardMedia
-  } from '@material-ui/core';
+  Typography, Card, CardActionArea, CardActions, CardContent, CardMedia,
+} from '@material-ui/core';
 
-const Userlist = props => {
-    const { cardShow } = props;
-    const { avatarUrl } = props;
-    const { login } = props;
-    const { name } = props;
-    const { location } = props;
-    const { htmlUrl } = props;
-    const { publicRepos } = props;
-    const { followers } = props;
-    return (
-        <div>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {cardShow
+const Userlist = (props) => {
+  const {
+    cardShow, avatarUrl, login, name, location, htmlUrl, publicRepos, followers,
+  } = props;
+  return (
+    <div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        {cardShow
                     && (
                     <Card style={{
                       width: 300,
@@ -60,10 +55,10 @@ const Userlist = props => {
                       </CardActions>
                     </Card>
                     )}
-          </div>
-            
-        </div>
-    );
+      </div>
+
+    </div>
+  );
 };
 
 export default Userlist;

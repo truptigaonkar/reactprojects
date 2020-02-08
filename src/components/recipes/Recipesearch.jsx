@@ -4,6 +4,8 @@ import Helmet from 'react-helmet';
 import {
   TextField, AppBar, Button, Link,
 } from '@material-ui/core';
+import Recipelist from './Recipelist';
+import { RECIPES_URL } from '../config';
 
 export default class Recipes extends Component {
   constructor(props) {
@@ -11,18 +13,19 @@ export default class Recipes extends Component {
     this.state = { recipes: [] };
   }
 
-  // http://www.recipepuppy.com/api/?i=onions,garlic&q=omelet&p=3
   getRecipe = (e) => {
     e.preventDefault();
     const ingredient = e.target.elements.ingredient.value;
     if (ingredient) {
       axios
         .get(
-          `https://cors-anywhere.herokuapp.com/http://www.recipepuppy.com/api/?i=${ingredient}`,
-        ) // https://cors-anywhere.herokuapp.com/ is used to remove error Cross-Origin Read Blocking (CORB)
+          // https://www.themealdb.com/api/json/v1/1/search.php?s=chicken
+          `${RECIPES_URL}api/json/v1/1/search.php?s=${ingredient}`,
+        )
         .then((response) => {
+          console.log(response.data.meals);
           this.setState({
-            recipes: response.data.results,
+            recipes: response.data.meals,
           });
         });
     }
@@ -40,22 +43,14 @@ export default class Recipes extends Component {
   GET RECIPE
           </Button>
         </form>
-        <div style={{ display: 'flex', justifyContent: 'space-center', flexWrap: 'wrap' }}>
-          {recipes.map((recipe) => (
-            <div className="card" key={recipe.id}>
-              <div><a href={`${recipe.href}`} rel="noopener noreferrer"><img src={recipe.thumbnail} alt="recipe" style={{ width: '100%', height: '100%' }} /></a></div>
-              <div><a href={`${recipe.href}`} rel="noopener noreferrer">{recipe.title}</a></div>
-              <div>{recipe.ingredients}</div>
-            </div>
-          ))}
-        </div>
+        <Recipelist recipes={recipes} />
         <br />
         <br />
         <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>
           <Button color="primary">
-            <Link href="http://www.recipepuppy.com/about/api/" color="inherit">
-              <b>Recipe Puppy API</b>
-               : http://www.recipepuppy.com/about/api/
+            <Link href="https://www.themealdb.com/api.php" color="inherit">
+              <b>Recipe Meal API</b>
+               : https://www.themealdb.com/api.php
             </Link>
           </Button>
         </AppBar>

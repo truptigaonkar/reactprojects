@@ -5,10 +5,10 @@ import {
   AppBar, Toolbar, IconButton, Button, Typography,
 } from '@material-ui/core';
 import Media from './components/Media';
-import Weather from './components/Weather';
-import Recipes from './components/Recipes';
-import Githubusers from './components/Githubusers/Usersearch.jsx';
-import Prisjaktproduct from './components/prisjaktproduct/Productsearch.jsx';
+import Weather from './components/weather/Weathersearch';
+import Recipes from './components/recipes/Recipesearch';
+import Githubusers from './components/Githubusers/Usersearch';
+import Prisjaktproduct from './components/prisjaktproduct/Productsearch';
 
 function App() {
   return (

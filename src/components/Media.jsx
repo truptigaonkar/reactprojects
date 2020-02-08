@@ -94,7 +94,6 @@ class Media extends Component {
       }
       return (
         <>
-          <h3>Media CARD</h3>
           <form onSubmit={this.getMedia}>
             <TextField id="standard-basic" label="media" name="media" placeholder="e.g. cat" />
 &nbsp;&nbsp;
