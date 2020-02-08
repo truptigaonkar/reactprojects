@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import Style from './Productsearch.module.css';
-import { prisjaktproduct_URL } from '../config.jsx';
+import { PRISJAKTPRODUCT_URL } from '../config.jsx';
 import Productlist from './Productlist.jsx';
 
 class Productsearch extends Component {
@@ -19,7 +19,7 @@ class Productsearch extends Component {
     e.preventDefault();
     const productToSearch = e.target.elements.product.value;
     axios
-      .post(`${prisjaktproduct_URL}?q=product.name:${productToSearch}`)
+      .post(`${PRISJAKTPRODUCT_URL}?q=product.name:${productToSearch}`)
       .then((res) => {
         console.log(res.status);
         this.setState({
@@ -73,10 +73,10 @@ class Productsearch extends Component {
               type="text"
               id="product"
               className={Style.form__field}
-              placeholder="Search here...."
+              placeholder="Search product here...."
             />
             <label htmlFor="product" className={Style.form__label}>
-              Search here....
+              Search product here....
             </label>
           </form>
         </div>

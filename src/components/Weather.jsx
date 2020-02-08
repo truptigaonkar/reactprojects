@@ -5,8 +5,7 @@ import {
   TextField, Fab, Card, CardHeader, CardContent, Typography, AppBar, Button, Link,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import { weather_URL, weather_APIKEY } from './config.jsx';
-
+import { WEATHER_URL, WEATHER_APIKEY } from './config.jsx';
 
 class Weather extends Component {
   constructor(props) {
@@ -24,7 +23,7 @@ class Weather extends Component {
       const city = e.target.elements.city.value;
       const country = e.target.elements.country.value;
 
-      axios.get(`${weather_URL}?q=${city},${country}&appid=${weather_APIKEY}&units=metric`)
+      axios.get(`${WEATHER_URL}?q=${city},${country}&appid=${WEATHER_APIKEY}&units=metric`)
         .then((response) => {
           if (city && country) {
             this.setState({

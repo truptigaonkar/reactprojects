@@ -7,7 +7,7 @@ import {
 import Media from './components/Media';
 import Weather from './components/Weather';
 import Recipes from './components/Recipes';
-import Githubusers from './components/Githubusers';
+import Githubusers from './components/Githubusers/Usersearch.jsx';
 import Prisjaktproduct from './components/prisjaktproduct/Productsearch.jsx';
 
 function App() {

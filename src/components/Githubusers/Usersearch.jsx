@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Helmet from 'react-helmet';
 import {
-  TextField, Paper, Typography, Card, CardActionArea, CardActions, CardContent, CardMedia, AppBar, Button, Link,
+  TextField, Paper, Typography, AppBar, Button, Link
 } from '@material-ui/core';
-import { githubusers_URL } from '../components/config.jsx';
+import { GITHUBUSERS_URL } from '../config.jsx';
+import Userlist from './Userlist.jsx';
 
-class githubusers extends Component {
+class Usersearch extends Component {
   constructor(props) {
     super(props);
     this.state = { errorMessage: false, cardShow: false };
@@ -25,7 +26,7 @@ class githubusers extends Component {
       const login = e.target.elements.login.value;
       axios
         .get(
-          `${githubusers_URL}${login}`,
+          `${GITHUBUSERS_URL}${login}`,
         )
         .then((response) => {
           if (login) {
@@ -85,54 +86,7 @@ class githubusers extends Component {
             </Paper>
           </form>
           <br />
-          {/* Displaying card contents */}
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {cardShow
-                    && (
-                    <Card style={{
-                      width: 300,
-                    }}
-                    >
-                      <CardActionArea>
-                        <CardMedia
-                          style={{ height: 300 }}
-                          image={avatarUrl}
-                        />
-                        <CardContent>
-                          <Typography gutterBottom variant="h5" component="h2">
-                            {login}
-                          </Typography>
-                          <Typography variant="body2" color="textSecondary" component="p">
-                            <div>
-                              <b>Name:</b>
-                              {name}
-                            </div>
-                            <div>
-                              <b>Location:</b>
-                              {' '}
-                              {location}
-                            </div>
-                            <div>
-                              <b>GitHhb url:</b>
-                              <a href={`${htmlUrl}`} rel="noopener noreferrer">
-                                {' '}
-                                {/* use noopener noreferrer for target="_blank" */}
-                                {htmlUrl}
-                              </a>
-                            </div>
-                          </Typography>
-                        </CardContent>
-                      </CardActionArea>
-                      <CardActions>
-                        <b>Repositories: </b>
-                        {publicRepos}
-                        <b>Followers: </b>
-                        {' '}
-                        {followers}
-                      </CardActions>
-                    </Card>
-                    )}
-          </div>
+          <Userlist cardShow={cardShow} avatarUrl={avatarUrl} login={login} name={name} location={location} htmlUrl={htmlUrl} publicRepos={publicRepos} followers={followers} />
           <br />
           <br />
           <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>
@@ -148,4 +102,4 @@ class githubusers extends Component {
     }
 }
 
-export default githubusers;
+export default Usersearch;

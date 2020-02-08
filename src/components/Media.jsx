@@ -5,8 +5,8 @@ import ReactPlayer from 'react-player';
 import {
   TextField, FormControl, InputLabel, Select, MenuItem, Button, AppBar, Link,
 } from '@material-ui/core';
-import { media_URL } from '../components/config.jsx';
-import { media_APIKEY } from '../components/config.jsx';
+import { MEDIA_URL } from '../components/config.jsx';
+import { MEDIA_APIKEY } from '../components/config.jsx';
 
 class Media extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class Media extends Component {
       const { value } = this.state;
       if (media) { // empty input
         if (value === 'image') {
-          axios.get(`${media_URL}?key=${media_APIKEY}&q=${media}&image_type=photo&pretty=true`)
+          axios.get(`${MEDIA_URL}?key=${MEDIA_APIKEY}&q=${media}&image_type=photo&pretty=true`)
             .then((response) => {
               this.setState({
                 medias: response.data.hits, // images
@@ -28,7 +28,7 @@ class Media extends Component {
               });
             });
         } else if (value === 'video') {
-          axios.get(`${media_URL}videos/?key=${media_APIKEY}&q=${media}&pretty=true`)
+          axios.get(`${MEDIA_URL}videos/?key=${MEDIA_APIKEY}&q=${media}&pretty=true`)
             .then((response) => {
               this.setState({
                 medias: response.data.hits, // videos
