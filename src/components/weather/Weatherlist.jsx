@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Card, CardHeader, CardContent, Typography,
-} from '@material-ui/core';
+import Style from './Weatherlist.module.css';
 
 const Weatherlist = (props) => {
   const {
@@ -11,37 +9,27 @@ const Weatherlist = (props) => {
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       {cardShow
                     && (
-                    <div>
-                      <Card style={{
-                        width: 300,
-                      }}
-                      >
-                        <CardHeader
-                          title={city}
-                          subheader={country}
-                        />
-                        <CardContent>
-                          <Typography gutterBottom variant="h5" component="h2">
-                            <img src={`http://openweathermap.org/img/w/${icon}.png`} alt="wthr img" width="200px" />
-                          </Typography>
+                      <div className={`${Style.card} ${Style.cardBox}`}>
+                        <div className={Style.card__title}>{city}</div>
+                        <div className={Style.card__title}>{country}</div>
+                        <img src={`http://openweathermap.org/img/w/${icon}.png`} alt="wthr img" width="200px" />
+                        <div className={Style.card__content}>
                           <b>{description}</b>
-                          <Typography variant="body2" color="textSecondary" component="p">
-                            <p>
-                              <b>Temperature: </b>
-                              {temp}
-                            </p>
-                            <p>
-                              <b>MIN Temperature: </b>
-                              {tempMin}
-                            </p>
-                            <p>
-                              <b>MAX Temperature: </b>
-                              {tempMax}
-                            </p>
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                    </div>
+
+                          <p>
+                            <b>Temperature: </b>
+                            {temp}
+                          </p>
+                          <p>
+                            <b>MIN Temperature: </b>
+                            {tempMin}
+                          </p>
+                          <p>
+                            <b>MAX Temperature: </b>
+                            {tempMax}
+                          </p>
+                        </div>x 
+                      </div>
                     )}
     </div>
 

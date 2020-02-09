@@ -1,0 +1,138 @@
+/* button-getuser effect */
+.buttonGetweather {
+    background-position: center;
+    transition: background 0.8s;
+  }
+  .buttonGetweather:hover {
+    background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+  }
+  .buttonGetweather:active {
+    background-color: #6eb9f7;
+    background-size: 100%;
+    transition: background 0s;
+  }
+  
+  /* Button style */
+  .buttonGetweather {
+    border: none;
+    border-radius: 2px;
+    padding: 12px 18px;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: white;
+    background-color: #2196f3;
+    box-shadow: 0 0 4px #999;
+    outline: none;
+    margin-left: 10px;
+    margin-top: -8px;
+  }
+  
+  /* Input */
+  .form {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 10px;
+    width: 600px;
+    margin:0 auto;
+    display: flex;
+  }
+  
+  .form__field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #d2d2d2;
+    outline: 0;
+    font-size: 16px;
+    color: #212121;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+  
+  .form__field::placeholder {
+    color: transparent;
+  }
+  
+  .form__field:placeholder-shown ~ .form__label {
+    font-size: 16px;
+    cursor: text;
+    top: 20px;
+  }
+  
+  label,
+  .form__field:focus ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 12px;
+    color: #9b9b9b;
+  }
+  
+  .form__field:focus ~ .form__label {
+    color: #337ab7;
+  }
+  
+  .form__field:focus {
+    padding-bottom: 6px;
+    border-bottom: 2px solid #337ab7;
+  }
+
+  .inputfield{
+    padding: 0 5px;
+  }
+
+  /* Alert */
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300); 
+
+.alert {
+	margin: 10px 0px;
+	padding:12px;
+	border-radius: 5px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: .9rem;
+	font-weight: 300;
+	letter-spacing: 1px;
+}
+
+.alert:hover {
+  cursor: pointer;
+}
+
+.alertWarning {
+  font-weight: bold;
+  color: #9F6000;
+  background-color: #FEEFB3;
+  border: 1px solid darken(#FEEFB3, 15%);
+}
+
+.alertWarning:before {
+  content: '\f071';
+  font-family: 'FontAwesome';
+}
+
+/* Footer */
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+a{
+  text-decoration: none;
+}
+
+footer:hover {
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  text-decoration: underline;
+}

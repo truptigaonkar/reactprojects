@@ -7,7 +7,8 @@ import {
 } from '@material-ui/core';
 import { MEDIA_URL, MEDIA_APIKEY } from '../config';
 
-import Medialist from './Medialist';
+import Medialistimages from './Medialistimages';
+import Medialistvideos from './Medialistvideos';
 
 class Media extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class Media extends Component {
         if (value === 'image') {
           axios.get(`${MEDIA_URL}?key=${MEDIA_APIKEY}&q=${media}&image_type=photo&pretty=true`)
             .then((response) => {
+              console.log(response.data.hits);
               this.setState({
                 medias: response.data.hits, // images
                 // value: 'image'
@@ -72,7 +74,7 @@ class Media extends Component {
   GET MEDIA
               </Button>
             </form>
-            <Medialist medias={medias} />
+            <Medialistimages medias={medias} />
             <br />
             <br />
             <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>
@@ -108,7 +110,7 @@ class Media extends Component {
   GET MEDIA
             </Button>
           </form>
-          <Medialist medias={medias} />
+          <Medialistvideos medias={medias} />
           <br />
           <br />
           <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>

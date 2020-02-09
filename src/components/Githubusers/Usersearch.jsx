@@ -2,21 +2,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Helmet from 'react-helmet';
-import {
-  TextField, Paper, Typography, AppBar, Button, Link,
-} from '@material-ui/core';
 import { GITHUBUSERS_URL } from '../config';
 import Userlist from './Userlist';
+import Style from './Usersearch.module.css';
 
 class Usersearch extends Component {
   constructor(props) {
     super(props);
-    this.state = { errorMessage: false, cardShow: false };
-  }
-
-  // Disappear error message after 2000sec.
-  componentDidUpdate() {
-    setTimeout(() => this.setState({ errorMessage: '' }), 2000);
+    this.state = {
+      errorMessage: false,
+      cardShow: false,
+      alertShow: false,
+    };
   }
 
     // Form button function
@@ -41,17 +38,19 @@ class Usersearch extends Component {
               followers: response.data.followers,
               errorMessage: false,
               cardShow: true,
+              alertShow: false,
             });
           } else {
             this.setState({
               errorMessage: true,
+
             });
           }
         })
         .catch(() => {
           this.setState({
-            errorMessage:
-                        'Username does not exist. Please enter valid username',
+            errorMessage: 'Username does not exist. Please enter valid username',
+            alertShow: true,
           });
         });
       e.target.reset(); // making input empty
@@ -67,36 +66,40 @@ class Usersearch extends Component {
       const { htmlUrl } = this.state;
       const { publicRepos } = this.state;
       const { followers } = this.state;
+      const { alertShow } = this.state;
 
       return (
         <>
           <Helmet><title>Githubusers</title></Helmet>
           <br />
-          {/* <form onSubmit={this.getUser.bind(this)}> */}
+
           <form onSubmit={this.getUser}>
-            <TextField id="outlined-basic" variant="outlined" name="login" label="GitHub Username" placeholder="e.g. mojombo" />
-            <Button style={{ margin: '15px' }} type="submit" variant="contained" color="primary" disableElevation>
-  GET USER
-            </Button>
-            {/* Displaying error messages */}
-            <Paper>
-              <Typography variant="h6">
-                {errorMessage}
-              </Typography>
-            </Paper>
+            <div className={Style.form}>
+              <div className="inputfield">
+                <input
+                  type="text"
+                  id="login"
+                  className={Style.form__field}
+                  placeholder="Github User...."
+                />
+                <label htmlFor="login" className={Style.form__label}>
+            e.g. mojombo
+                </label>
+              </div>
+              <button type="submit" className={Style.buttonGetuser}>GET USER</button>
+            </div>
           </form>
+          {alertShow && (
+          <div className={`${Style.alert} ${Style.alertWarning}`}>{errorMessage}</div>)}
           <br />
           <Userlist cardShow={cardShow} avatarUrl={avatarUrl} login={login} name={name} location={location} htmlUrl={htmlUrl} publicRepos={publicRepos} followers={followers} />
           <br />
           <br />
-          <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>
-            <Button color="primary">
-              <Link href="https://developer.github.com/v3/" color="inherit">
-                <b>GitHub users API</b>
-: https://developer.github.com/v3/
-              </Link>
-            </Button>
-          </AppBar>
+          <footer>
+            <a href="https://developer.github.com/v3/" color="inherit">
+              <b>GitHub users API</b>
+            </a>
+          </footer>
         </>
       );
     }

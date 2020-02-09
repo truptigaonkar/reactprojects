@@ -1,22 +1,18 @@
 /* eslint-disable react/jsx-indent */
 import React, { Component } from 'react';
 import axios from 'axios';
-import {
-  TextField, Fab, AppBar, Button, Link,
-} from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
 import { WEATHER_URL, WEATHER_APIKEY } from '../config';
 import Weatherlist from './Weatherlist';
+import Style from './Weathersearch.module.css';
 
 class Weather extends Component {
   constructor(props) {
     super(props);
-    this.state = { errorMessage: false, cardShow: false };
-  }
-
-  // Disappear error message after 3000sec.
-  componentDidUpdate() {
-    setTimeout(() => this.setState({ errorMessage: '' }), 3000);
+    this.state = {
+      errorMessage: false,
+      cardShow: false,
+      alertShow: false,
+    };
   }
 
     getWeather = (e) => {
@@ -38,6 +34,7 @@ class Weather extends Component {
               icon: response.data.weather[0].icon,
               errorMessage: false,
               cardShow: true,
+              alertShow: false,
             });
           } else {
             this.setState({
@@ -51,6 +48,7 @@ class Weather extends Component {
             this.setState({
               errorMessage:
                             'Weather with the supplied city and country does not exist. Please enter valid city and country',
+              alertShow: true,
             });
           } else if (error.response.status === 401) {
             this.setState({
@@ -72,30 +70,54 @@ class Weather extends Component {
       const { tempMin } = this.state;
       const { tempMax } = this.state;
       const { icon } = this.state;
+      const { alertShow } = this.state;
+
       return (
         <>
         <br />
           <form onSubmit={this.getWeather}>
-            <TextField id="filled-basic" label="city" variant="filled" name="city" placeholder="e.g. London" />
-            {' '}
-            <TextField id="filled-basic" label="country" variant="filled" name="country" placeholder="e.g. UK" />
-            {' '}
-            <Fab type="submit" color="primary" aria-label="add"><AddIcon /></Fab>
+
+            <div className={Style.form}>
+              <div className="inputfield" style={{ marginRight: '20px' }}>
+                <input
+                  type="text"
+                  id="city"
+                  className={Style.form__field}
+                  placeholder="Github User...."
+                />
+                <label htmlFor="city" className={Style.form__label}>
+            e.g. London
+                </label>
+              </div>
+
+              <div className="inputfield">
+                <input
+                  type="text"
+                  id="country"
+                  className={Style.form__field}
+                  placeholder="Github User...."
+                />
+                <label htmlFor="country" className={Style.form__label}>
+            e.g. Uk
+                </label>
+              </div>
+
+              <button type="submit" className={Style.buttonGetweather}>GET Weather</button>
+            </div>
+
           </form>
           <br />
-          <div className="warning">{errorMessage}</div>
+          {alertShow && (
+          <div className={`${Style.alert} ${Style.alertWarning}`}>{errorMessage}</div>)}
           <br />
           <Weatherlist cardShow={cardShow} city={city} country={country} icon={icon} description={description} temp={temp} tempMin={tempMin} tempMax={tempMax} />
           <br />
           <br />
-          <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>
-            <Button color="primary">
-              <Link href="https://openweathermap.org/api" color="inherit">
-                <b>Weather API</b>
-: https://openweathermap.org/api
-              </Link>
-            </Button>
-          </AppBar>
+          <footer>
+            <a href="https://openweathermap.org/api" color="inherit">
+              <b>Weather API</b>
+            </a>
+          </footer>
         </>
       );
     }
