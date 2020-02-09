@@ -8,7 +8,7 @@
   * Weather API (https://openweathermap.org/)
   * Media(Image/Video) API (https://pixabay.com/api/docs/)
   * Prisjakt Product API
-* Material-UI (https://material-ui.com/getting-started/installation/) 
+* React CSS module
 
 #### Installation
 ```

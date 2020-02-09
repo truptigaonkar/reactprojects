@@ -9,6 +9,7 @@ import { MEDIA_URL, MEDIA_APIKEY } from '../config';
 
 import Medialistimages from './Medialistimages';
 import Medialistvideos from './Medialistvideos';
+import './Mediasearch.css';
 
 class Media extends Component {
   constructor(props) {
@@ -55,24 +56,19 @@ class Media extends Component {
         return (
           <>
             <form onSubmit={this.getMedia}>
-              <TextField id="standard-basic" label="media" name="media" placeholder="e.g. cat" />
+              <input name="media" placeholder="e.g. cat" />
 &nbsp;&nbsp;
-              <FormControl>
-                <InputLabel id="demo-simple-select-label" />
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={value}
-                  onChange={this.selectChange}
-                >
-                  <MenuItem value="image">Image</MenuItem>
-                  <MenuItem value="video">Video</MenuItem>
-                </Select>
-              </FormControl>
+              <select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={value}
+                onChange={this.selectChange}
+              >
+                <option value="image">Image</option>
+                <option value="video">Video</option>
+              </select>
 &nbsp;
-              <Button style={{ margin: '15px' }} type="submit" variant="contained" color="primary" disableElevation>
-  GET MEDIA
-              </Button>
+              <button type="submit">GET MEDIA</button>
             </form>
             <Medialistimages medias={medias} />
             <br />
@@ -91,24 +87,19 @@ class Media extends Component {
       return (
         <>
           <form onSubmit={this.getMedia}>
-            <TextField id="standard-basic" label="media" name="media" placeholder="e.g. cat" />
+            <input name="media" placeholder="e.g. cat" />
 &nbsp;&nbsp;
-            <FormControl>
-              <InputLabel id="demo-simple-select-label" />
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={value}
-                onChange={this.selectChange}
-              >
-                <MenuItem value="image">Image</MenuItem>
-                <MenuItem value="video">Video</MenuItem>
-              </Select>
-            </FormControl>
+            <select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={value}
+              onChange={this.selectChange}
+            >
+              <option value="image">Image</option>
+              <option value="video">Video</option>
+            </select>
 &nbsp;
-            <Button style={{ margin: '15px' }} type="submit" variant="contained" color="primary" disableElevation>
-  GET MEDIA
-            </Button>
+            <button type="submit">GET MEDIA</button>
           </form>
           <Medialistvideos medias={medias} />
           <br />
