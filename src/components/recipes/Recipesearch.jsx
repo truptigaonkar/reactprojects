@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Helmet from 'react-helmet';
-import {
-  TextField, AppBar, Button, Link,
-} from '@material-ui/core';
 import Recipelist from './Recipelist';
 import { RECIPES_URL } from '../config';
+import Style from './Recipesearch.module.css';
 
 export default class Recipes extends Component {
   constructor(props) {
@@ -37,23 +35,28 @@ export default class Recipes extends Component {
     return (
       <>
         <Helmet><title>Recipe</title></Helmet>
-        <form onSubmit={this.getRecipe}>
-          <TextField id="standard-basic" name="ingredient" label="Ingredient" placeholder="e.g.fish" />
-          <Button style={{ margin: '15px' }} type="submit" variant="contained" color="primary" disableElevation>
-  GET RECIPE
-          </Button>
-        </form>
+        <br />
+        <div className={Style.form}>
+          <form onSubmit={this.getRecipe}>
+            <input
+              type="text"
+              id="ingredient"
+              className={Style.form__field}
+              placeholder="Search recipe here...."
+            />
+            <label htmlFor="ingredient" className={Style.form__label}>
+              Search product here....
+            </label>
+          </form>
+        </div>
         <Recipelist recipes={recipes} />
         <br />
         <br />
-        <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>
-          <Button color="primary">
-            <Link href="https://www.themealdb.com/api.php" color="inherit">
-              <b>Recipe Meal API</b>
-               : https://www.themealdb.com/api.php
-            </Link>
-          </Button>
-        </AppBar>
+        <footer>
+          <a href="https://www.themealdb.com/api.php" color="inherit">
+            <b>Recipe Meal API</b>
+          </a>
+        </footer>
       </>
     );
   }

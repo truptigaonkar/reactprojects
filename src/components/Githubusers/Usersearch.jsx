@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Helmet from 'react-helmet';
 import {
-  TextField, Paper, Typography, AppBar, Button, Link
+  TextField, Paper, Typography, AppBar, Button, Link,
 } from '@material-ui/core';
-import { GITHUBUSERS_URL } from '../config.jsx';
-import Userlist from './Userlist.jsx';
+import { GITHUBUSERS_URL } from '../config';
+import Userlist from './Userlist';
 
 class Usersearch extends Component {
   constructor(props) {
@@ -77,7 +77,7 @@ class Usersearch extends Component {
             <TextField id="outlined-basic" variant="outlined" name="login" label="GitHub Username" placeholder="e.g. mojombo" />
             <Button style={{ margin: '15px' }} type="submit" variant="contained" color="primary" disableElevation>
   GET USER
-              </Button>
+            </Button>
             {/* Displaying error messages */}
             <Paper>
               <Typography variant="h6">

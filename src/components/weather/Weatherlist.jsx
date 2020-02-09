@@ -1,15 +1,15 @@
 import React from 'react';
 import {
-    Card, CardHeader, CardContent, Typography
-  } from '@material-ui/core';
+  Card, CardHeader, CardContent, Typography,
+} from '@material-ui/core';
 
-const Weatherlist = props => {
-    const {
-        cardShow, city, country, icon, description, temp, tempMin, tempMax
-      } = props;
-    return (
-           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {cardShow
+const Weatherlist = (props) => {
+  const {
+    cardShow, city, country, icon, description, temp, tempMin, tempMax,
+  } = props;
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      {cardShow
                     && (
                     <div>
                       <Card style={{
@@ -43,9 +43,9 @@ const Weatherlist = props => {
                       </Card>
                     </div>
                     )}
-          </div> 
-        
-    );
+    </div>
+
+  );
 };
 
 export default Weatherlist;

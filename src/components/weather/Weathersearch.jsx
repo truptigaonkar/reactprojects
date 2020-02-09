@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { WEATHER_URL, WEATHER_APIKEY } from '../config';
-import Weatherlist from './Weatherlist.jsx';
+import Weatherlist from './Weatherlist';
 
 class Weather extends Component {
   constructor(props) {

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import {
   AppBar, Toolbar, IconButton, Button, Typography,
 } from '@material-ui/core';
-import Media from './components/Media';
+import Media from './components/media/Mediasearch';
 import Weather from './components/weather/Weathersearch';
 import Recipes from './components/recipes/Recipesearch';
 import Githubusers from './components/Githubusers/Usersearch';

@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import axios from 'axios';
-import ReactPlayer from 'react-player';
+
 import {
   TextField, FormControl, InputLabel, Select, MenuItem, Button, AppBar, Link,
 } from '@material-ui/core';
-import { MEDIA_URL } from '../components/config.jsx';
-import { MEDIA_APIKEY } from '../components/config.jsx';
+import { MEDIA_URL, MEDIA_APIKEY } from '../config';
+
+import Medialist from './Medialist';
 
 class Media extends Component {
   constructor(props) {
@@ -71,14 +72,7 @@ class Media extends Component {
   GET MEDIA
               </Button>
             </form>
-            <div style={{ display: 'flex', justifyContent: 'space-center', flexWrap: 'wrap' }}>
-              {medias.map((media) => (
-                <div className="card" key={media.id}>
-                  <div><img src={media.previewURL} alt="url" style={{ width: '100%', height: '100%' }} /></div>
-                  <div>{media.tags}</div>
-                </div>
-              ))}
-            </div>
+            <Medialist medias={medias} />
             <br />
             <br />
             <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>
@@ -114,24 +108,7 @@ class Media extends Component {
   GET MEDIA
             </Button>
           </form>
-          <div style={{ display: 'flex', justifyContent: 'space-center', flexWrap: 'wrap' }}>
-            {medias.map((media) => (
-              <div className="card" key={media.id}>
-                { media.videos && (
-                <div>
-                  <ReactPlayer
-                    url={media.videos.small.url}
-                    className="react-player"
-                    playing
-                    width="100%"
-                    height="100%"
-                  />
-                </div>
-                ) }
-                <div>{media.tags}</div>
-              </div>
-            ))}
-          </div>
+          <Medialist medias={medias} />
           <br />
           <br />
           <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>
