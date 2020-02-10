@@ -26,6 +26,9 @@ export default class Recipes extends Component {
           this.setState({
             recipes: response.data.meals,
           });
+        })
+        .catch((error) => {
+          console.log(error);
         });
     }
     e.target.reset(); // making input empty
@@ -46,7 +49,7 @@ export default class Recipes extends Component {
               placeholder="Search recipe here...."
             />
             <label htmlFor="ingredient" className={Style.form__label}>
-              Search product here....
+              Search ingredient here....
             </label>
           </form>
         </div>

@@ -5,6 +5,7 @@ import Style from './Productsearch.module.css';
 import { PRISJAKTPRODUCT_URL } from '../config';
 import Productlist from './Productlist';
 import Footer from '../Footer';
+import Alert from '../Alert';
 
 class Productsearch extends Component {
   constructor(props) {
@@ -60,14 +61,7 @@ class Productsearch extends Component {
         <Helmet>
           <title>Product Search</title>
         </Helmet>
-        <div className={Style.message}>
-          {alertShow && (
-            <div className={`${Style.alert} ${Style.alertWarning}`}>
-              <span>Warning! </span>
-              {errorMessage}
-            </div>
-          )}
-        </div>
+        <Alert alertShow={alertShow} errorMessage={errorMessage} />
         <div className={Style.form}>
           <form onSubmit={this.getProduct}>
             <input

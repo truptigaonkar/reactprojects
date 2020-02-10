@@ -5,6 +5,7 @@ import Helmet from 'react-helmet';
 import { GITHUBUSERS_URL } from '../config';
 import Userlist from './Userlist';
 import Footer from '../Footer';
+import Alert from '../Alert';
 import Style from './Usersearch.module.css';
 
 class Usersearch extends Component {
@@ -90,8 +91,7 @@ class Usersearch extends Component {
               <button type="submit" className={Style.buttonGetuser}>GET USER</button>
             </div>
           </form>
-          {alertShow && (
-          <div className={`${Style.alert} ${Style.alertWarning}`}>{errorMessage}</div>)}
+          <Alert alertShow={alertShow} errorMessage={errorMessage} />
           <br />
           <Userlist cardShow={cardShow} avatarUrl={avatarUrl} login={login} name={name} location={location} htmlUrl={htmlUrl} publicRepos={publicRepos} followers={followers} />
           <br />

@@ -5,6 +5,7 @@ import { WEATHER_URL, WEATHER_APIKEY } from '../config';
 import Weatherlist from './Weatherlist';
 import Style from './Weathersearch.module.css';
 import Footer from '../Footer';
+import Alert from '../Alert';
 
 class Weather extends Component {
   constructor(props) {
@@ -108,8 +109,7 @@ class Weather extends Component {
 
           </form>
           <br />
-          {alertShow && (
-          <div className={`${Style.alert} ${Style.alertWarning}`}>{errorMessage}</div>)}
+          <Alert alertShow={alertShow} errorMessage={errorMessage} />
           <br />
           <Weatherlist cardShow={cardShow} city={city} country={country} icon={icon} description={description} temp={temp} tempMin={tempMin} tempMax={tempMax} />
           <br />
