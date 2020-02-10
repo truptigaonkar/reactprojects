@@ -1,10 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import axios from 'axios';
-
-import {
-  TextField, FormControl, InputLabel, Select, MenuItem, Button, AppBar, Link,
-} from '@material-ui/core';
+import Footer from '../Footer';
 import { MEDIA_URL, MEDIA_APIKEY } from '../config';
 
 import Medialistimages from './Medialistimages';
@@ -73,14 +70,7 @@ class Media extends Component {
             <Medialistimages medias={medias} />
             <br />
             <br />
-            <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>
-              <Button color="primary">
-                <Link href="https://pixabay.com/api/docs/" color="inherit">
-                  <b>Pixabay API</b>
-: https://pixabay.com/api/docs/
-                </Link>
-              </Button>
-            </AppBar>
+            <Footer href="https://pixabay.com/api/docs/" title="Pixabay API" />
           </>
         );
       }
@@ -104,14 +94,7 @@ class Media extends Component {
           <Medialistvideos medias={medias} />
           <br />
           <br />
-          <AppBar position="fixed" color="default" style={{ top: 'auto', bottom: 0 }}>
-            <Button color="primary">
-              <Link href="https://pixabay.com/api/docs/" color="inherit">
-                <b>Pixabay API</b>
-: https://pixabay.com/api/docs/
-              </Link>
-            </Button>
-          </AppBar>
+          <Footer href="https://pixabay.com/api/docs/" title="Pixabay API" />
         </>
       );
     }

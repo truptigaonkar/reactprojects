@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import Recipelist from './Recipelist';
 import { RECIPES_URL } from '../config';
 import Style from './Recipesearch.module.css';
+import Footer from '../Footer';
 
 export default class Recipes extends Component {
   constructor(props) {
@@ -52,11 +53,7 @@ export default class Recipes extends Component {
         <Recipelist recipes={recipes} />
         <br />
         <br />
-        <footer>
-          <a href="https://www.themealdb.com/api.php" color="inherit">
-            <b>Recipe Meal API</b>
-          </a>
-        </footer>
+        <Footer href="https://www.themealdb.com/api.php" title="Recipe Meal API" />
       </>
     );
   }

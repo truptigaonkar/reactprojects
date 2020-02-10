@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import Style from './Productsearch.module.css';
-import { PRISJAKTPRODUCT_URL } from '../config.jsx';
-import Productlist from './Productlist.jsx';
+import { PRISJAKTPRODUCT_URL } from '../config';
+import Productlist from './Productlist';
+import Footer from '../Footer';
 
 class Productsearch extends Component {
   constructor(props) {
@@ -81,6 +82,7 @@ class Productsearch extends Component {
           </form>
         </div>
         <Productlist products={products} />
+        <Footer href="https://dev.prisjakt.nu/doc/api/v1/" title="Prisjakt API" />
       </div>
     );
   }

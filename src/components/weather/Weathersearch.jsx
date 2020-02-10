@@ -4,6 +4,7 @@ import axios from 'axios';
 import { WEATHER_URL, WEATHER_APIKEY } from '../config';
 import Weatherlist from './Weatherlist';
 import Style from './Weathersearch.module.css';
+import Footer from '../Footer';
 
 class Weather extends Component {
   constructor(props) {
@@ -113,11 +114,7 @@ class Weather extends Component {
           <Weatherlist cardShow={cardShow} city={city} country={country} icon={icon} description={description} temp={temp} tempMin={tempMin} tempMax={tempMax} />
           <br />
           <br />
-          <footer>
-            <a href="https://openweathermap.org/api" color="inherit">
-              <b>Weather API</b>
-            </a>
-          </footer>
+          <Footer href="https://openweathermap.org/api" title="Weather API" />
         </>
       );
     }

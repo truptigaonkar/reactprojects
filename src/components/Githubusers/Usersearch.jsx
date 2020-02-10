@@ -4,6 +4,7 @@ import axios from 'axios';
 import Helmet from 'react-helmet';
 import { GITHUBUSERS_URL } from '../config';
 import Userlist from './Userlist';
+import Footer from '../Footer';
 import Style from './Usersearch.module.css';
 
 class Usersearch extends Component {
@@ -95,11 +96,7 @@ class Usersearch extends Component {
           <Userlist cardShow={cardShow} avatarUrl={avatarUrl} login={login} name={name} location={location} htmlUrl={htmlUrl} publicRepos={publicRepos} followers={followers} />
           <br />
           <br />
-          <footer>
-            <a href="https://developer.github.com/v3/" color="inherit">
-              <b>GitHub users API</b>
-            </a>
-          </footer>
+          <Footer href="https://developer.github.com/v3/" title="GitHub users API" />
         </>
       );
     }
