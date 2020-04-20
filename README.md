@@ -1,4 +1,5 @@
 ## React API CARDS - [Live Demo]( https://truptigaonkar.github.io/reactprojects/)
+![Apr-20-2020 13-50-19](https://user-images.githubusercontent.com/14937374/79748749-375f6180-830e-11ea-94ff-fa9cea150890.gif)
 #### Technologies
 * Node
 * React
