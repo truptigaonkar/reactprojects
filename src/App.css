@@ -102,3 +102,8 @@ a {
 
 }
 
+a.active-class{
+	color:darkslateblue;
+	font-weight: bold;
+}
+
